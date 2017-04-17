@@ -11,9 +11,9 @@ public class ColorHelper {
 									 new Color(0, 0, 255)	//k�k
 	};
 	
-	Color color;
+	public Color color;
 	
-	ColorHelper(int value) {
+	public ColorHelper(int value) {
 		color = colors[value];
 	}
 	
