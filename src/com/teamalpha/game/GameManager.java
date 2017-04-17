@@ -9,4 +9,24 @@ public class GameManager {
 //
 //	}
 
+    public static GameManager instance = new GameManager();
+
+    private Game currentGame;
+
+    public Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public void newGame() {
+        this.currentGame = new Game();
+    }
+
+    public void loadGame(String filename) {
+
+    }
+
+    public void saveGame(String filename) {
+
+    }
+
 }
