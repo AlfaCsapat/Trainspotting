@@ -8,7 +8,7 @@ import com.teamalpha.train.Train;
  */
 public class Station extends RailWay {
 
-	public GameColor color;
+	public Integer color;
 	public int passangers;
 	
 	/********************************************/

@@ -16,6 +16,9 @@ public class Observer {
 			train.update(game);
 			
 		}
+
+		//A trainspawn manager-t is updateljük
+		board.spawnManager.update(board);
 	}
 	
 }

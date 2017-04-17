@@ -1,0 +1,9 @@
+JUNCTION jNorth 50 0
+JUNCTION jSouth 50 100
+JUNCTION jWest 0 50
+JUNCTION jEast 100 50
+RAIL railNorth jNorth null jCross cross
+RAIL railSouth jSouth null jCross cross
+RAIL railWest jWest null jCross cross
+RAIL railEast jEast null jCross cross
+RAILCROSSING cross jCross railNorth railSouth railWest railEast

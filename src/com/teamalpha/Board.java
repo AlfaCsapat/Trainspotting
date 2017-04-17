@@ -14,8 +14,9 @@ public class Board {
 	public HashMap<String, RailWay> rails = new HashMap<String, RailWay>();	//ID - p�lyaelem p�rok
 	public ArrayList<Train> trains = new ArrayList<Train>();	//A j�t�kban megjelen� vonatok list�ja
 	public TunnelSystem tunnelSystem = new TunnelSystem();		//Alag�trendszer
-	public TrainSpawnManager spawnManager;	//Vonatok spawnol�s�t menedzsel� objektum
-	
+	public TrainSpawnManager spawnManager = new TrainSpawnManager();	//Vonatok spawnol�s�t menedzsel� objektum
+	public int ticks = 0;
+
 	/********************************************/
 	
 	public Board() {

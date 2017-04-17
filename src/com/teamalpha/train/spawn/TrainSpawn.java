@@ -8,6 +8,8 @@ import java.sql.Time;
  * Egy vonat elhelyez�s�t, spawn-ol�s�t le�r�/kezel� oszt�ly.
  */
 public class TrainSpawn {
-	public Train train;
-	public Time spawnTime;
+
+	public String spawnCode;
+	public int spawnTime;
+
 }

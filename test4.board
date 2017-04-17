@@ -1,0 +1,8 @@
+JUNCTION junction1 0 0
+JUNCTION junction2 100 0
+JUNCTION junction3 100 100
+JUNCTION junction4 200 0
+RAIL rail1 junction1 null junction2 shift1
+RAIL rail2 junction2 shift1 junction3 null
+RAIL rail3 junction2 shift1 junction4 null
+SHIFT shift1 junction2 rail1 rail2 rail3

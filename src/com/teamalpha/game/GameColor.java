@@ -13,8 +13,8 @@ public class GameColor {
 	
 	Color color;
 	
-	GameColor(int value) {
-		color = colors[value];
+	public GameColor(int value) {
+		color = colors[value-1];
 	}
 	
 }
