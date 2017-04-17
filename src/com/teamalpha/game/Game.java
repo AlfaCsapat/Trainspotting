@@ -1,19 +1,13 @@
 package com.teamalpha.game;
 
-import com.teamalpha.Board;
-import com.teamalpha.Observer;
 import com.teamalpha.railway.*;
 import com.teamalpha.railway.tunnel.TunnelGate;
-import com.teamalpha.train.Train;
-import com.teamalpha.train.element.Axis;
-import com.teamalpha.train.element.Locomotive;
-import com.teamalpha.train.element.TrainElement;
+import com.teamalpha.utils.ColorHelper;
 import com.teamalpha.utils.Position;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.HashMap;
-import java.util.Scanner;
 
 /**
  * A terepasztalt, observert, level-inf�kat menedzsel� oszt�ly.
@@ -128,7 +122,7 @@ public class Game {
 		    	else if (cmd[0].equals("STATION")) {
 		    		Station station = new Station(cmd[1]);
 		    		//Sz�n
-		    		station.color = new GameColor(Integer.parseInt(cmd[5]));
+		    		station.color = new ColorHelper(Integer.parseInt(cmd[5]));
 		    		//V�rakoz� utasok
 		    		station.passangers = Integer.parseInt(cmd[6]);
 		    		//Be�ll�tjuk a junctionokat

@@ -1,6 +1,6 @@
 package com.teamalpha.railway;
 
-import com.teamalpha.game.GameColor;
+import com.teamalpha.utils.ColorHelper;
 import com.teamalpha.train.Train;
 
 /**
@@ -8,7 +8,7 @@ import com.teamalpha.train.Train;
  */
 public class Station extends RailWay {
 
-	public GameColor color;
+	public ColorHelper color;
 	public int passangers;
 	
 	/********************************************/

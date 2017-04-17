@@ -1,6 +1,6 @@
 package com.teamalpha.command;
 
-import com.teamalpha.Board;
+import com.teamalpha.game.Board;
 import com.teamalpha.game.GameManager;
 import com.teamalpha.railway.RailShift;
 import com.teamalpha.railway.RailWay;

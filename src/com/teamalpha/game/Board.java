@@ -1,4 +1,4 @@
-package com.teamalpha;
+package com.teamalpha.game;
 import com.teamalpha.railway.RailWay;
 import com.teamalpha.railway.tunnel.TunnelSystem;
 import com.teamalpha.train.Train;

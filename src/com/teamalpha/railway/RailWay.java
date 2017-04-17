@@ -65,7 +65,7 @@ public class RailWay {
 				element.setRail(null); //ezzel tudjuk jelezni hogy a vonat kisiklott
 				return 0;
 			}
-			destinationJunction.enterElement(element, this);
+			destinationJunction.passElement(element, this);
 			
 		}
 		
@@ -121,11 +121,10 @@ public class RailWay {
 		return distance;
 		
 	}
-	
+
 	/**
 	 * Akkor h�v�dik, amikor egy RailDriven elem r�l�pett a p�lyaelemre
 	 * @param element		A RailDriven elem, mely a p�lyaelemre l�pett.
-	 * @param fromJunction	A csom�pont, amely fel�l a RailDriven elem �rkezett.
 	 * @param oldRail		A s�n, melyen a tengely (element) kor�bban haladt
 	 */
 	public void enterElement(RailDriven element, RailWay oldRail) {
@@ -134,20 +133,31 @@ public class RailWay {
 		//Be�ll�tjuk hogy a tengely mely s�nen halad mostant�l
 		element.setRail(this);
 	}
-	
+
 	/**
-	 * Megadja a p�lyaelem azon v�g-csom�pontj�t, mely nem egyenl� az entranceJunction csom�ponttal.
-	 * @param entranceJunction	Ez alapj�n lehet eld�nteni, hogy mely csom�pontot adja vissza a f�ggv�ny.
+	 * Retrieves a pair of junctions to choose destination from
 	 * @return
 	 */
-	private RailJunction getExitJunction(RailWay oldRail) {
+	protected RailJunction[] getRailDefiningJunctionPair(RailWay oldRail) {
+		return this.junctions;
+	}
+
+	/**
+	 * Megadja a p�lyaelem azon v�g-csom�pontj�t, mely nem egyenl� az entranceJunction csom�ponttal.
+	 * @return
+	 */
+	protected RailJunction getExitJunction(RailWay oldRail) {
 		System.out.println("ID="+id);
+
+		// Retrieving path
+		RailJunction[] junctionPair = this.getRailDefiningJunctionPair(oldRail);
+
 		//Ha a kapott s�nt a junction[0] csom�ponton �t �rj�k el, akkor a junction[1] lesz a c�l
-		if (junctions[0].adjacentRail == oldRail)
-			return junctions[1];
+		if (junctionPair[0].adjacentRail == oldRail)
+			return junctionPair[1];
 		//-"- csak ford�tva
-		else if (junctions[1].adjacentRail == oldRail)
-			return junctions[0];
+		else if (junctionPair[1].adjacentRail == oldRail)
+			return junctionPair[0];
 		else
 		{
 			///ha ide jutunk az HIBA

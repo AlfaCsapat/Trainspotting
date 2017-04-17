@@ -17,4 +17,18 @@ public class RailCrossing extends RailWay {
 		id = _id;
 	}
 
+	@Override
+	protected RailJunction[] getRailDefiningJunctionPair(RailWay oldRail) {
+
+		if(this.junctions[0].adjacentRail == oldRail || this.junctions[1].adjacentRail == oldRail) {
+			return super.getRailDefiningJunctionPair();
+		}
+		else {
+			return this.otherJunctions;
+		}
+
+		return junctions;
+	}
+
+
 }
