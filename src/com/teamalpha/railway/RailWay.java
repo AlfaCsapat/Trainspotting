@@ -141,7 +141,7 @@ public class RailWay {
 	 * @return
 	 */
 	private RailJunction getExitJunction(RailWay oldRail) {
-		System.out.println("ID="+id);
+		
 		//Ha a kapott s�nt a junction[0] csom�ponton �t �rj�k el, akkor a junction[1] lesz a c�l
 		if (junctions[0].adjacentRail == oldRail)
 			return junctions[1];
