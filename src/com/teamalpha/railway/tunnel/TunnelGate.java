@@ -1,4 +1,7 @@
-package com.teamalpha;
+package com.teamalpha.railway.tunnel;
+
+import com.teamalpha.railway.RailJunction;
+import com.teamalpha.railway.RailWay;
 
 /**
  * Alag�tbej�ratot le�r� oszt�ly.

@@ -1,4 +1,6 @@
-package com.teamalpha;
+package com.teamalpha.railway;
+import com.teamalpha.utils.Position;
+
 import java.util.HashMap;
 
 /**

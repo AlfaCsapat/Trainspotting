@@ -1,4 +1,4 @@
-package com.teamalpha;
+package com.teamalpha.game;
 
 import java.awt.Color;
 

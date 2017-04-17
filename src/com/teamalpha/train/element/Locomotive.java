@@ -1,6 +1,6 @@
 package com.teamalpha.train.element;
 
-import com.teamalpha.RailWay;
+import com.teamalpha.railway.RailWay;
 
 /**
  * Egy mozdonyt le�r� oszt�ly.

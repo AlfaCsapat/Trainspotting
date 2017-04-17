@@ -1,4 +1,5 @@
-package com.teamalpha;
+package com.teamalpha.railway;
+import com.teamalpha.utils.Position;
 import com.teamalpha.train.Train;
 import com.teamalpha.train.element.TrainElement;
 

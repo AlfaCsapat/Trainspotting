@@ -1,4 +1,6 @@
-package com.teamalpha;
+package com.teamalpha.railway;
+
+import com.teamalpha.utils.Position;
 
 /**
  * A p�lyaelem (RailWay) ezen kereszt�l �ri el a tengelyt (Axis).

@@ -1,6 +1,10 @@
 package com.teamalpha.train.element;
 
-import com.teamalpha.*;
+import com.teamalpha.railway.RailChangeListener;
+import com.teamalpha.railway.RailDriven;
+import com.teamalpha.railway.RailJunction;
+import com.teamalpha.railway.RailWay;
+import com.teamalpha.utils.Position;
 
 /**
  * Egy vonatelem egy tengelye.

@@ -1,8 +1,8 @@
 package com.teamalpha.train.element;
 
-import com.teamalpha.RailChangeListener;
-import com.teamalpha.RailWay;
-import com.teamalpha.Station;
+import com.teamalpha.railway.RailChangeListener;
+import com.teamalpha.railway.RailWay;
+import com.teamalpha.railway.Station;
 import com.teamalpha.train.Train;
 
 /**

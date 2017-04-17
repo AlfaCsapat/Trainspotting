@@ -1,9 +1,14 @@
-package com.teamalpha;
+package com.teamalpha.game;
 
+import com.teamalpha.Board;
+import com.teamalpha.Observer;
+import com.teamalpha.railway.*;
+import com.teamalpha.railway.tunnel.TunnelGate;
 import com.teamalpha.train.Train;
 import com.teamalpha.train.element.Axis;
 import com.teamalpha.train.element.Locomotive;
 import com.teamalpha.train.element.TrainElement;
+import com.teamalpha.utils.Position;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

@@ -1,5 +1,7 @@
 package com.teamalpha.train;
-import com.teamalpha.*;
+import com.teamalpha.game.Game;
+import com.teamalpha.railway.RailWay;
+import com.teamalpha.railway.Station;
 import com.teamalpha.train.element.Locomotive;
 import com.teamalpha.train.element.LocomotiveDelegate;
 import com.teamalpha.train.element.TrainElement;

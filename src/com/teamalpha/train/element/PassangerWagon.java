@@ -1,7 +1,7 @@
 package com.teamalpha.train.element;
 
-import com.teamalpha.GameColor;
-import com.teamalpha.Station;
+import com.teamalpha.game.GameColor;
+import com.teamalpha.railway.Station;
 import com.teamalpha.train.Train;
 
 /**

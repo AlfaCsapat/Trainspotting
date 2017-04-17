@@ -1,4 +1,4 @@
-package com.teamalpha;
+package com.teamalpha.railway;
 
 /**
  * Egy v�lt� p�lyaelemet le�r� oszt�ly.

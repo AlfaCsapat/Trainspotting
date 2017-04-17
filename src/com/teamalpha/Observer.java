@@ -1,5 +1,6 @@
 package com.teamalpha;
 
+import com.teamalpha.game.Game;
 import com.teamalpha.train.Train;
 
 /**

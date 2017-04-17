@@ -1,6 +1,6 @@
 package com.teamalpha.train.element;
 
-import com.teamalpha.RailWay;
+import com.teamalpha.railway.RailWay;
 
 /**
  * A mozdony (Locomotive) �s a hozz� tartoz� vonat (Train) k�z�tti

@@ -1,4 +1,4 @@
-package com.teamalpha;
+package com.teamalpha.railway;
 
 import com.teamalpha.train.element.Axis;
 
