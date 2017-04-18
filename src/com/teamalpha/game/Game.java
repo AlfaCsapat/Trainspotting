@@ -1,11 +1,14 @@
 package com.teamalpha.game;
 
 import com.google.gson.*;
-//import com.google.gson.JsonSerializationContext;
-//import com.google.gson.JsonSerializer;
 import com.teamalpha.railway.*;
 import com.teamalpha.railway.tunnel.TunnelGate;
 import com.teamalpha.utils.ColorHelper;
+import com.teamalpha.train.Train;
+import com.teamalpha.train.element.Axis;
+import com.teamalpha.train.element.Locomotive;
+import com.teamalpha.train.element.TrainElement;
+import com.teamalpha.train.spawn.TrainSpawn;
 import com.teamalpha.utils.Position;
 
 import java.io.BufferedReader;
@@ -14,7 +17,7 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 
 /**
- * A terepasztalt, observert, level-inf�kat menedzsel� oszt�ly.
+ * A terepasztalt, observert,  menedzselő osztály.
  */
 public class Game {
 
@@ -27,13 +30,13 @@ public class Game {
 	Observer observer = new Observer();
 
 	public static boolean endOfGame = false;
-	
+
 	public static void notifyLose() { endOfGame = true; }
 	public static void notifyWin() { endOfGame = true; }
-	
+
 	/********************************************/
 	
-	Game() {
+	public Game() {
 	}
 
 	public void update() {
@@ -41,18 +44,16 @@ public class Game {
 	}
 
 	/**
-	 * A megadott f�jlb�l bet�lti a p�ly�t. A f�jl tartalma a p�lyale�r� nyelv alapj�n kell
-	 * hogy k�sz�lj�n.
-	 * @param file	A bet�ltend� p�ly�t tartalmaz� f�jl neve, el�r�si �ttal
+	 * A megadott fájlból betölti a terepasztalt
 	 */
 	public void loadBoardFromFile(String file) {
 		
 		board = new Board();
 		
-		//T�roljuk ideiglenesen a csom�pont-poz�ci�kat
+		//Tároljuk ideiglenesen a csomópont-pozíciókat
 		HashMap<String, Position> junctions = new HashMap<String, Position>();
 		
-		//Soronk�nt beolvassuk a f�jlt
+		//Soronként beolvassuk a fájlt
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 		    String line;
 		    while ((line = br.readLine()) != null) {
@@ -63,12 +64,12 @@ public class Game {
 		    		junctions.put(cmd[1], new Position(Integer.parseInt(cmd[2]), Integer.parseInt(cmd[3])));
 		    	}
 		    	else if (cmd[0].equals("RAIL")) {
-		    		//L�trehozzuk a s�nt a megadott id-vel
+		    		//Létrehozzuk a sínt a megadott id-vel
 		    		RailWay rail = new RailWay(cmd[1]);
-		    		//Be�ll�tjuk a v�gpontjait:
+		    		//Beallitjuk a vegpontjait:
 		    		rail.junctions[0] = new RailJunction(
-		    				junctions.get(cmd[2]),	//A v�gpont (x,y) poz�ci�ja
-		    				cmd[3]					//Az itt kapcsol�d� p�lyaelem ID-je
+		    				junctions.get(cmd[2]),	//A vegpont (x,y) pozicioja
+		    				cmd[3]					//Az itt kapcsolodo palyaelem ID-je
 		    		);
 		    		rail.junctions[1] = new RailJunction(
 		    				junctions.get(cmd[4]),
@@ -125,7 +126,10 @@ public class Game {
 		    	else if (cmd[0].equals("STATION")) {
 		    		Station station = new Station(cmd[1]);
 		    		//Sz�n
-		    		station.color = new ColorHelper(Integer.parseInt(cmd[5]));
+
+		    		//station.color = new ColorHelper(Integer.parseInt(cmd[5]));
+					station.color = Integer.parseInt(cmd[5]);
+
 		    		//V�rakoz� utasok
 		    		station.passangers = Integer.parseInt(cmd[6]);
 		    		//Be�ll�tjuk a junctionokat
@@ -146,20 +150,28 @@ public class Game {
 		    				junctions.get(cmd[2]),
 		    				cmd[3]
 		    		);
-		    		//mivel az alagutak alapb�l z�rtak, a m�sik csom�pontjukat "null" id-vel inicializ�ljuk
+		    		//mivel az alagutak alapból zátak, a másik csomópontjukat "null" id-vel inicializáljuk
 		    		tunnelGate.junctions[1] = new RailJunction(
 		    				junctions.get(cmd[2]),
 		    				"null"
 		    		);
 
-		    		//Hozz�adjuk az alag�tbej�ratot a terepasztalhoz
+		    		//Hozzáadjuk az alagútbejáratot a terepasztalhoz
 		    		board.rails.put(tunnelGate.id, tunnelGate);
-		    		//�s az alag�trendszerhez is (csak az id-t)
+		    		//és az alagútrendszerhez is (csak az id-t)
 		    		board.tunnelSystem.gateIds.add(tunnelGate.id);
 		    	}
+		    	else if (cmd[0].equals("TRAINSPAWN")) {
+		    		TrainSpawn trainSpawn = new TrainSpawn();
+					trainSpawn.spawnTime = Integer.parseInt(cmd[1]);
+		    		trainSpawn.spawnCode = "TRAINSPAWN";
+		    		for(int i=2; i<cmd.length; ++i)
+		    			trainSpawn.spawnCode += " " + cmd[i];
+		    		board.spawnManager.trainSpawns.add(trainSpawn);
+				}
 		    	
 		    }
-		    //A szomsz�doss�gokat be�ll�tjuk a terepasztalon:
+		    //A szomszédosságokat beállitjuk a terepasztalon:
 		    board.loadElements();
 		    System.out.println("Board loaded.");
 		}
@@ -169,15 +181,13 @@ public class Game {
 		}
 		
 	}
-
 	public static class GameSerializer implements JsonSerializer<Game> {
 		@Override
 		public JsonElement serialize(Game game, Type typeOfSrc, JsonSerializationContext context) {
 			JsonObject result = new JsonObject();
 			result.add("board", context.serialize(game.board, Board.class));
-//			result.addProperty("board", "dummyboard");
 			return result;
 		}
 	}
-	
+
 }

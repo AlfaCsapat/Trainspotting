@@ -61,15 +61,14 @@ public class Train implements LocomotiveDelegate {
 
 	@Override
 	public void onRailEntered(RailWay rail) {
-		rail.interact(this);
 		System.out.println("\tTrain "+id+" stepped on rail "+rail.id+".");
+		rail.interact(this);
 	}
 	
 	public void onArrivedToStation(Station station) {
 			//Minden vagonnak sz�lunk hogy �llom�shoz �rt a vonat
 			boolean canGetOff = true; //Jelzi, hogy szabad-e m�g lesz�llni vagonokr�l
 			for(int i=0; i<wagons.size(); ++i) {
-				System.out.println("FUCK YOU");
 				canGetOff = wagons.get(i).interactStation(station, canGetOff, this, i+1);
 			}
 	}

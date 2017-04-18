@@ -9,13 +9,6 @@ import java.io.*;
 
 public class GameManager {
 	
-//	public static void main(String[] args) {
-//
-//		Game currentGame = new Game();
-//		currentGame.loop();
-//
-//	}
-
     public static GameManager instance = new GameManager();
 
     private Game currentGame;

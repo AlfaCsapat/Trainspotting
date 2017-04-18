@@ -3,12 +3,15 @@ package com.teamalpha.railway;
 import com.teamalpha.utils.ColorHelper;
 import com.teamalpha.train.Train;
 
+import java.awt.*;
+
 /**
  * Egy �llom�s p�lyaelemet le�r� oszt�ly.
  */
 public class Station extends RailWay {
 
-	public ColorHelper color;
+	public Integer color;
+
 	public int passangers;
 	
 	/********************************************/

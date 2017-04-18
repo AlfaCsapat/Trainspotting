@@ -22,13 +22,14 @@ public class TrainElement implements RailChangeListener {
 	}
 	
 	/**
-	 * A vonatelem mozgat�s�t v�gz� met�dus
-	 * @param travelDistance	A t�vols�g, amennyit a vonatelem mozogni tud/akar
+	 * A vonatelem mozgatását végző metódus
+	 * @param travelDistance	A távolság, amennyit a vonatelem mozogni tud/akar
 	 */
 	public void move(float travelDistance) {
-		frontAxis.move(travelDistance);
-		rearAxis.move(travelDistance);
-		//Ha van k�vetkez� vonatelem, akkor annak mozgat�sa
+		frontAxis.move(travelDistance);	//Első tengely mozgatása
+		System.out.println("("+frontAxis.position.x+", "+frontAxis.position.y+")");
+		rearAxis.move(travelDistance);	//hátsó tengely mozgatása
+		//Ha van következő vonatelem, akkor annak mozgatása
 		if (followingTrainElement != null)
 			followingTrainElement.move(travelDistance);
 
