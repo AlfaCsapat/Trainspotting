@@ -1,0 +1,6 @@
+JUNCTION junction1 0 0
+JUNCTION junction2 100 0
+JUNCTION junction3 200 0
+TUNNELGATE gate1 junction1 null
+TUNNELGATE gate2 junction2 null
+TUNNELGATE gate3 junction3 null

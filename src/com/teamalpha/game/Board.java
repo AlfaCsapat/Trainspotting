@@ -1,11 +1,18 @@
-package com.teamalpha;
+package com.teamalpha.game;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 import com.teamalpha.railway.RailWay;
 import com.teamalpha.railway.tunnel.TunnelSystem;
 import com.teamalpha.train.Train;
 import com.teamalpha.train.spawn.TrainSpawnManager;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class Board {
 
@@ -36,6 +43,27 @@ public class Board {
 		//Az alag�trendszert is be�ll�tjuk
 		tunnelSystem.registerGates(rails);
 		
+	}
+
+	@Override
+	public String toString() {
+		return "height: " + this.height + "width: " + this.width;
+	}
+
+	public static class BoardSerializer implements JsonSerializer<Board> {
+		@Override
+		public JsonElement serialize(Board board, Type typeOfSrc, JsonSerializationContext context) {
+			JsonObject result = new JsonObject();
+			result.addProperty("width", board.width);
+			result.addProperty("height", board.height);
+			JsonObject rails = new JsonObject();
+			for(Map.Entry<String, RailWay> entry : board.rails.entrySet()) {
+				rails.add(entry.getKey(), context.serialize(entry.getValue(), RailWay.class));
+			}
+			result.add("rails", rails);
+
+			return result;
+		}
 	}
 	
 }

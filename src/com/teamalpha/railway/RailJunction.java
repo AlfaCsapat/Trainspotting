@@ -42,7 +42,7 @@ public class RailJunction {
 	 * @param element	A RailDriven elem, mely a csom�pontra �rkezett.
 	 * @param oldRail	A h�v�t�l megkapjuk hogy eddig mely s�nen haladt a tengely
 	 */
-	public void enterElement(RailDriven element, RailWay oldRail) {
+	public void passElement(RailDriven element, RailWay oldRail) {
 		adjacentRail.enterElement(element, oldRail);
 	}
 	

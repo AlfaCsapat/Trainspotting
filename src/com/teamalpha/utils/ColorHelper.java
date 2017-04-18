@@ -1,8 +1,8 @@
-package com.teamalpha.game;
+package com.teamalpha.utils;
 
 import java.awt.Color;
 
-public class GameColor {
+public class ColorHelper {
 
 	//Alap sz�nek
 	public static Color[] colors = { new Color(0, 0, 0),	//fekete
@@ -11,9 +11,9 @@ public class GameColor {
 									 new Color(0, 0, 255)	//k�k
 	};
 	
-	Color color;
+	public Color color;
 	
-	GameColor(int value) {
+	public ColorHelper(int value) {
 		color = colors[value];
 	}
 	

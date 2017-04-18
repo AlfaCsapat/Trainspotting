@@ -1,6 +1,6 @@
 package com.teamalpha.train.element;
 
-import com.teamalpha.game.GameColor;
+import com.teamalpha.utils.ColorHelper;
 import com.teamalpha.railway.Station;
 import com.teamalpha.train.Train;
 
@@ -8,7 +8,7 @@ import com.teamalpha.train.Train;
  * Egy kocsit (vagont) le�r� oszt�ly.
  */
 public class PassangerWagon extends TrainElement {
-	public GameColor color;	//A kocsi sz�ne
+	public ColorHelper color;	//A kocsi sz�ne
 	public int passangers;	//A kocsiban utaz� utasok sz�ma
 	
 	/*****************************/

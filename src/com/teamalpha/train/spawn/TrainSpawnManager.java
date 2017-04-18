@@ -1,5 +1,5 @@
 package com.teamalpha.train.spawn;
-import com.teamalpha.Board;
+import com.teamalpha.game.Board;
 
 import java.util.ArrayList;
 
