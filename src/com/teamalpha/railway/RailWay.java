@@ -1,10 +1,17 @@
 package com.teamalpha.railway;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+import com.teamalpha.game.Board;
 import com.teamalpha.utils.Position;
 import com.teamalpha.train.Train;
 import com.teamalpha.train.element.TrainElement;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * P�lyaelemet le�r� oszt�ly (�soszt�lyk�nt), ill. a s�n p�lyaelemet le�r� oszt�ly (�nmag�ban).
@@ -35,7 +42,7 @@ public class RailWay {
 	/**
 	 * Egy RailDriven elem mozgat�s�t kezel� met�dus.
 	 * @param element	A mozogni k�v�n� RailDriven elem.
-	 * @param distance	A t�vols�g, amennyit az elem mozogni k�v�n.
+	 * @param travelDistance	A t�vols�g, amennyit az elem mozogni k�v�n.
 	 * @return
 	 */
 	public float driveElement(RailDriven element, float travelDistance) {
@@ -189,6 +196,16 @@ public class RailWay {
 	 */
 	public void interact(Train train) {
 		///TO-DO
+	}
+
+
+	public static class RailWaySerializer implements JsonSerializer<RailWay> {
+		@Override
+		public JsonElement serialize(RailWay railWay, Type typeOfSrc, JsonSerializationContext context) {
+			JsonObject result = new JsonObject();
+			result.addProperty("id", railWay.id);
+			return result;
+		}
 	}
 
 }

@@ -1,5 +1,8 @@
 package com.teamalpha.game;
 
+import com.google.gson.*;
+//import com.google.gson.JsonSerializationContext;
+//import com.google.gson.JsonSerializer;
 import com.teamalpha.railway.*;
 import com.teamalpha.railway.tunnel.TunnelGate;
 import com.teamalpha.utils.ColorHelper;
@@ -7,6 +10,7 @@ import com.teamalpha.utils.Position;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 
 /**
@@ -22,7 +26,7 @@ public class Game {
 
 	Observer observer = new Observer();
 
-	public static boolean endOfGame = true;
+	public static boolean endOfGame = false;
 	
 	public static void notifyLose() { endOfGame = true; }
 	public static void notifyWin() { endOfGame = true; }
@@ -35,7 +39,6 @@ public class Game {
 	public void update() {
 		this.observer.update(this.board, this);
 	}
-
 
 	/**
 	 * A megadott f�jlb�l bet�lti a p�ly�t. A f�jl tartalma a p�lyale�r� nyelv alapj�n kell
@@ -166,7 +169,15 @@ public class Game {
 		}
 		
 	}
-	
 
+	public static class GameSerializer implements JsonSerializer<Game> {
+		@Override
+		public JsonElement serialize(Game game, Type typeOfSrc, JsonSerializationContext context) {
+			JsonObject result = new JsonObject();
+			result.add("board", context.serialize(game.board, Board.class));
+//			result.addProperty("board", "dummyboard");
+			return result;
+		}
+	}
 	
 }

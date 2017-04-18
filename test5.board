@@ -1,0 +1,6 @@
+JUNCTION junction1 0 0
+JUNCTION junction2 100 0
+JUNCTION junction3 100 100
+RAIL rail1 junction1 null junction2 station1
+STATION station1 junction2 rail1 rail2 1 5
+RAIL rail2 junction2 station1 junction3 null

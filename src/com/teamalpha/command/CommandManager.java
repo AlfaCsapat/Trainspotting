@@ -1,6 +1,7 @@
 package com.teamalpha.command;
 
 import com.teamalpha.game.Board;
+import com.teamalpha.game.Game;
 import com.teamalpha.game.GameManager;
 import com.teamalpha.railway.RailShift;
 import com.teamalpha.railway.RailWay;
@@ -26,9 +27,6 @@ public class CommandManager {
      */
     public void loop() {
 
-        //Jelenleg bet�lt�tt board f�jlja. A restart parancs miatt kell ismern�nk, hogy bet�lthess�k �jra.
-        String actualBoardFile = "";
-
         //"V�gtelen" ciklus a parancsok beolvas�s�hoz
         Scanner input=new Scanner(System.in);
         while(true) {
@@ -39,34 +37,37 @@ public class CommandManager {
 
             String command = cmd[0].toUpperCase();
 
+            Game currentGame = GameManager.instance.getCurrentGame();
+
             //EXIT: kil�p�s parancs
             if (command.equals("EXIT"))
                 break;
 
             //Terepasztal bet�lt�se megadott f�jlb�l
-//            if (command.equals("LOADBOARD")) {
-//                actualBoardFile = cmd[1];
-//                loadBoardFromFile(actualBoardFile);
-//                endOfGame = false;
-//            }
-//            //Restart: �jra bet�ltj�k a terepasztalt
-//            else if (command.equals("RESTART")) {
-//                loadBoardFromFile(actualBoardFile);
-//                endOfGame = false;
-//            }
-//            ///NEXTBOARD
-//            else if (command.equals("NEXTBOARD")) {
-//                System.out.println("No board to load.");
-//            }
-//
-//
-//            if (endOfGame) continue;	///HA a j�t�k v�get �rt, akkor a k�vetkez� parancsokat nem �rtelmezz�k
+            if (command.equals("LOADBOARD")) {
+                String filename = this.getCommandArgumentAtIndex(cmd, 1);
+                if(filename != null) {
+                    GameManager.instance.loadGame(filename);
+                }
+            }
+            //Restart: �jra bet�ltj�k a terepasztalt
+            else if (command.equals("RESTART")) {
+                GameManager.instance.restartGame();
+            }
+            ///NEXTBOARD
+            else if (command.equals("NEXTBOARD")) {
+                System.out.println("No board to load.");
+            }
+
+            boolean endOfGame = currentGame.endOfGame;
+
+            if (endOfGame) continue;	///HA a j�t�k v�get �rt, akkor a k�vetkez� parancsokat nem �rtelmezz�k
 
             Board board = GameManager.instance.getCurrentGame().getBoard();
 
             ///SAVE [filename]
             if (command.equals("SAVE")) {
-                //TO-DO
+                GameManager.instance.saveGame("testgame");
             }
             ///LOAD [filename]
             else if (command.equals("LOAD")) {
@@ -180,6 +181,16 @@ public class CommandManager {
         }
         input.close();
 
+    }
+
+    private String getCommandArgumentAtIndex(String[] args, int index) {
+        if(index < args.length) {
+            return args[index];
+        }
+        else {
+            System.out.println("Missing argument for command at index: " + index);
+        }
+        return null;
     }
 
 }
